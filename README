@@ -1,0 +1,19 @@
+一、脚本安装环境：
+1、本地MAC或Windows操作系统：安装Vagrant2.2.2、VirtualBox5.2、Ansible2.4.2。
+2、用Vagrant启三台虚拟机，虚拟机的所使用的box是CentOS-6-x86_64-Vagrant-1809_01.VirtualBox.box（下载地址http://cloud.centos.org/centos/6/vagrant/x86_64/images/），设备分为生产环境、集成环境、部署环境:
+dev      192.168.221.2
+pipeline 192.168.221.3
+prod     192.168.221.4
+3、在dev上安装Ansible,Git,Tomcat；在pipeline上安装Jenkins,Git,Ansible；在prod上安装Ansible,Git,Tomcat。
+
+二、如何执行脚本
+1、在本机上执行
+$git clone https://github.com/gU2vVKgE/homework1.git
+2、进入homework1目录，执行命令部署环境
+$vagrant up
+3、此时已部署好dev,pipeline,prod三个环境。假设开发者的源文件目录与Github仓库（https://github.com/gU2vVKgE/sourcecode）同步（此仓库路径可在ansible/config.cfg中修改），开发者在完成对源文件的修改后，使用git push更新Github仓库内容，此时可执行如下命令来更新dev环境的部署。
+$chmod +x refresh.sh
+$./refresh.sh
+4、访问http://192.168.221.2:8080/HomeWork验证修改后的结果。
+5、对于分开部署，可考虑把静态资源部署到远程AWS S3上。访问https://s3.us-east-2.amazonaws.com/majun2018/football.jpg，查看部署到远程AWS S3上的图片。
+
