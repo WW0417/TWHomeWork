@@ -1,0 +1,20 @@
+---
+
+- name: Refresh
+  hosts: dev
+  become: true
+  vars_files:
+    - config.cfg
+
+  tasks:
+
+    - name: Git clone
+      raw: cd /home/vagrant/ && git clone "{{ giturl }}"
+
+    - name: Java build and deploy
+      raw: cd /home/vagrant/sourcecode && jar -cvf HomeWork.war *.* && cp HomeWork.war /var/lib/tomcat/webapps/
+
+    - name: Start tomcat
+      service:
+          name: tomcat
+          state: restarted

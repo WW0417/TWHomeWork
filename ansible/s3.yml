@@ -1,0 +1,19 @@
+---
+
+- name: Copy files to aws s3
+  hosts: localhost
+  become: true
+  vars_files:
+    - config.cfg
+
+  tasks:
+
+    - name: Copy files to S3
+      s3:
+        aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
+        aws_secret_key: "{{ lookup('env','AWS_SECRET_ACCESS_KEY') }}"
+        region: "{{ region }}"
+        bucket: "{{ bucket }}"
+        object: "{{ object }}"
+        src: "{{ src }}"
+        mode: put
