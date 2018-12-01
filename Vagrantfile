@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "file", source: "./ansible", destination: "/root/ansible"
+  config.vm.provision "file", source: "./ansible", destination: "/vagrant/ansible"
   config.vm.provision "shell", path: "boot.sh"
-  config.vm.provision "shell", inline: "ansible-playbook /root/ansible/pipeline.yml"
+  config.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/pipeline.yml"
 end
