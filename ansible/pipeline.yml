@@ -3,8 +3,8 @@
 - name: Build the pipeline
   hosts: localhost
   become: true
-  vars_files:
-    - config.cfg
+  #  vars_files:
+  #  - config.cfg
 
   roles:
     - tomcat
