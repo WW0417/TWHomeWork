@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
     pipeline.vm.provision "shell", path: "boot.sh"
     pipeline.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/pipeline.yml"
     pipeline.vm.network "forwarded_port", guest: 8088, host: 58088
+    pipeline.vm.network "forwarded_port", guest: 8080, host: 58080
     pipeline.vm.network "forwarded_port", guest: 22, host: 50022
   end
 end
