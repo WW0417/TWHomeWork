@@ -68,6 +68,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.define "pipeline", primary: true do |pipeline|
+    pipeline.vm.hostname = "pipeline"
     pipeline.vm.provision "shell", path: "boot.sh"
     pipeline.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/pipeline.yml"
     pipeline.vm.network "forwarded_port", guest: 8088, host: 58088
