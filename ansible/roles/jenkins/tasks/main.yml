@@ -6,9 +6,12 @@
 - name: Install jenkins
   yum:
       name: jenkins
-      stat: present
+      state: present
+
+- name: Change jenkins port
+  raw: sed -i -e "s/JENKINS_PORT=\"8080\"/JENKINS_PORT=\"8088\"/g" /etc/sysconfig/jenkins
 
 - name: Start jenkins
   service:
       name: jenkins
-      stat: 
+      state: restarted
