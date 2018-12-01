@@ -1,0 +1,2 @@
+url_sc = 'https://www.tenable.com/downloads/securitycenter-3d-tool-and-xtool'
+url_nessus = 'https://www.tenable.com/downloads/nessus'
