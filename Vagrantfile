@@ -67,12 +67,29 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.define "pipeline", primary: true do |pipeline|
+  config.vm.define "dev", primary: true do |dev|
+    dev.vm.hostname = "dev"
+    dev.vm.provision "shell", path: "boot.sh"
+    dev.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/dev.yml"
+    dev.vm.network "private_network", ip: "192.168.221.2"
+  end
+
+  config.vm.define "pipeline" do |pipeline|
     pipeline.vm.hostname = "pipeline"
     pipeline.vm.provision "shell", path: "boot.sh"
     pipeline.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/pipeline.yml"
-    pipeline.vm.network "forwarded_port", guest: 8088, host: 58088
-    pipeline.vm.network "forwarded_port", guest: 8080, host: 58080
-    pipeline.vm.network "forwarded_port", guest: 22, host: 50022
+    pipeline.vm.network "private_network", ip: "192.168.221.3"
+    #pipeline.vm.network "forwarded_port", guest: 8088, host: 38088
+    #pipeline.vm.network "forwarded_port", guest: 8080, host: 38080
+    #pipeline.vm.network "forwarded_port", guest: 22, host: 30022
   end
+
+  config.vm.define "prod" do |prod|
+    prod.vm.hostname = "prod"
+    prod.vm.provision "shell", path: "boot.sh"
+    prod.vm.provision "shell", inline: "ansible-playbook /vagrant/ansible/prod.yml"
+    prod.vm.network "private_network", ip: "192.168.221.4"
+  end
+
+
 end

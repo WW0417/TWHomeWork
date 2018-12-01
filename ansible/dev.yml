@@ -1,10 +1,9 @@
 ---
 
-- name: Build the pipeline
+- name: Build the dev env
   hosts: localhost
   become: true
 
   roles:
     - common
-    - java
-    - jenkins
+    - tomcat
