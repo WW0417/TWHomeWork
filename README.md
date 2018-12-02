@@ -28,4 +28,5 @@
     
 6. 任务三：CI/CD 部署产品
     1. 对于分开部署，可考虑把静态资源部署到 AWS S3 上。访问 https://s3.us-east-2.amazonaws.com/majun2018/football.jpg 查看部署到远程AWS S3上的图片。
+    2. 可使用 Jenkins 调用 ansible playbook `ansible/s3.yml`，将静态内容部署至 AWS S3 上。需提前设置 AWS 相关密钥，以及源、目的路径等参数（在文件 `ansible/config.cfg` 中设置）；同理，也可以使用类似 ansible playbook 将其他内容部署于 prod 虚拟机上。
 

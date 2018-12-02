@@ -8,6 +8,15 @@
 
   tasks:
 
+    - name: Install python env
+      raw: yum install centos-release-SCL -y && yum install scl-utils-build -y && yum --disablerepo="*" --enablerepo="centos-sclo-rh" list && yum install python27 -y && echo '/opt/rh/python27/root/usr/lib64/' > /etc/ld.so.conf.d/python27.conf && /sbin/ldconfig
+
+    - name: Install pip
+      raw: curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && /opt/rh/python27/root/usr/bin/python2.7 get-pip.py
+
+    - name: Install ansible aws dependencies
+      raw: pip install -r /vagrant/requirements.txt
+
     - name: Copy files to S3
       s3:
         aws_access_key: "{{ lookup('env','AWS_ACCESS_KEY_ID') }}"
