@@ -8,6 +8,24 @@
 
   tasks:
 
+    - name: Check if old sourcecode exists
+      stat:
+          path:  /home/vagrant/sourcecode
+      register: stat_result_1
+
+    - name: Delete existing sourcecode
+      raw: rm -rf /home/vagrant/sourcecode
+      when: stat_result_1.stat.exists == True
+
+    - name: Check if old HoweWork directory exists
+      stat:
+          path:  /var/lib/tomcat/webapps/HomeWork/
+      register: stat_result_2
+
+    - name: Delete existing HomeWork directory
+      raw: rm -rf /var/lib/tomcat/webapps/HomeWork/
+      when: stat_result_2.stat.exists == True
+
     - name: Git clone
       raw: cd /home/vagrant/ && git clone "{{ giturl }}"
 
