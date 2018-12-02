@@ -1,7 +1,7 @@
 1. 所需环境
     1. 操作系统：Mac 或 Windows 系统（需有 Bash 环境）。
-    2. 安装软件：Vagrant 2.2.2、VirtualBox 5.2、Ansible 2.4.2以上
-    3. 所需虚拟机镜像：从 http://cloud.centos.org/centos/6/vagrant/x86_64/images/ 下载 CentOS 6 的 vagrant 镜像 CentOS-6-x86_64-Vagrant-1809_01.VirtualBox.box
+    2. 安装软件：Vagrant 2.2.2、VirtualBox 5.2、Ansible 2.4.2以上。
+    3. 所需虚拟机镜像：从 http://cloud.centos.org/centos/6/vagrant/x86_64/images/ 下载 CentOS 6 的 vagrant 镜像 CentOS-6-x86_64-Vagrant-1809_01.VirtualBox.box 并用 `vagrant box add centos6 CentOS-6-x86_64-Vagrant-1809_01.VirtualBox.box` 命令导入 vagrant。
 
 2. 下载本脚本
     ```
